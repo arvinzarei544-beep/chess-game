@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی شطرنج</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .info {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .player-turn {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f0f0f0;
+        }
+
+        .player-turn.white {
+            color: #333;
+            background: #ffffff;
+            border: 2px solid #333;
+        }
+
+        .player-turn.black {
+            color: #fff;
+            background: #333333;
+        }
+
+        .board {
+            display: inline-block;
+            border: 3px solid #333;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            user-select: none;
+            transition: all 0.2s;
+        }
+
+        .square:hover {
+            transform: scale(1.05);
+        }
+
+        .square.white {
+            background-color: #f0d9b5;
+        }
+
+        .square.black {
+            background-color: #b58863;
+        }
+
+        .square.selected {
+            background-color: #baca44 !important;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .square.valid-move {
+            background-color: #7fc97f !important;
+            opacity: 0.8;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .moves-list {
+            margin-top: 20px;
+            max-height: 150px;
+            overflow-y: auto;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .move-item {
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>♟️ بازی شطرنج ♟️</h1>
+        <p class="info">دو بازیکن انسان</p>
+        
+        <div class="player-turn" id="playerTurn">
+            نوبت: سفید
+        </div>
+
+        <div class="board" id="board"></div>
+
+        <div class="controls">
+            <button onclick="resetGame()">شروع دوباره</button>
+            <button onclick="undoMove()">برگشت</button>
+        </div>
+
+        <div class="moves-list">
+            <div id="movesList"></div>
+        </div>
+    </div>
+
+    <script src="chess.js"></script>
+</body>
+</html>
